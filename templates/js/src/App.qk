@@ -1,5 +1,4 @@
 <lang-js>
-    import viteLogo from "./assets/imgs/vite.svg"
     import HelloWorld from "./components/HelloWorld"
     import qingkuaiLogo from "./assets/imgs/qingkuai.svg"
 </lang-js>
@@ -12,7 +11,7 @@
         <img
             class="logo"
             alt="Vite logo"
-            !src={viteLogo}
+            src="/vite.svg"
         />
     </a>
     <a
