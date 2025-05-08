@@ -1,0 +1,6 @@
+.DS_Store
+.gitignore
+node_modules
+qingkuai-app
+jsconfig.json
+pnpm-lock.yaml

@@ -1,0 +1,44 @@
+<lang-js>
+    import viteLogo from "./assets/imgs/vite.svg"
+    import HelloWorld from "./components/HelloWorld"
+    import qingkuaiLogo from "./assets/imgs/qingkuai.svg"
+</lang-js>
+
+<div>
+    <a
+        href="https://vite.dev"
+        target="_blank"
+    >
+        <img
+            class="logo"
+            alt="Vite logo"
+            !src={viteLogo}
+        />
+    </a>
+    <a
+        href="https://qingkuai.dev"
+        target="_blank"
+    >
+        <img
+            class="logo qingkuai"
+            alt="QingKuai logo"
+            !src={qingkuaiLogo}
+        />
+    </a>
+</div>
+<HelloWorld msg="Vite + QingKuai" />
+
+<lang-css>
+    .logo {
+        height: 6em;
+        padding: 1.5em;
+        will-change: filter;
+        transition: filter 300ms;
+    }
+    .logo:hover {
+        filter: drop-shadow(0 0 2em #646cffaa);
+    }
+    .logo.vue:hover {
+        filter: drop-shadow(0 0 2em #2296f3aa);
+    }
+</lang-css>
