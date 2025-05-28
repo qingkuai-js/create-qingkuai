@@ -1,6 +1,6 @@
 import "./assets/styles/main.css"
 
 import App from "./App.qk"
-import { createApp } from "qingkuai"
+import { mountApp } from "qingkuai"
 
-createApp("#app", App)
+mountApp("#app", App)
