@@ -37,7 +37,7 @@
     .logo:hover {
         filter: drop-shadow(0 0 2em #646cffaa);
     }
-    .logo.vue:hover {
+    .logo.qingkuai:hover {
         filter: drop-shadow(0 0 2em #2296f3aa);
     }
 </lang-css>
