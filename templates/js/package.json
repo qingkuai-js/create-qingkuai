@@ -9,10 +9,10 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "qingkuai": "^1.0.43"
+        "qingkuai": "^1.0.45"
     },
     "devDependencies": {
-        "vite-plugin-qingkuai": "^1.0.11",
+        "vite-plugin-qingkuai": "^1.0.12",
         "vite": "^6.3.5"
     }
 }
