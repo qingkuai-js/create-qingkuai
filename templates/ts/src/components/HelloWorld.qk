@@ -20,7 +20,7 @@
 <p>
     Check out
     <a
-        href="http://qkdocs.localhost.com/guide/getting-started/install.html"
+        href="https://qingkuai.dev/getting-started/install.html"
         target="_blank"
         >install qingkuai</a
     >, the official QingKuai + Vite starter
@@ -28,7 +28,7 @@
 <p>
     Learn more about IDE Support for QingKuai in the
     <a
-        href="http://qkdocs.localhost.com/guide/misc/language-features.html"
+        href="http://qkdocs.localhost.com/misc/language-features.html"
         target="_blank"
         >QingKuai Language Features Guide</a
     >.
