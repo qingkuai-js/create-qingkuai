@@ -15,13 +15,7 @@ npm create qingkuai -- "your project name"
 # With pnpm
 pnpm create qingkuai@latest "your project name"
 
-# With yarn(v1+)
-yarn create qingkuai "your project name"
-
-# With yarn(v2+)
-yarn create qingkuai@latest "your project name"
-
-# With yarn ^v4.11
+# With yarn
 yarn dlx create-qingkuai@latest "your project name"
 ```
 
@@ -34,13 +28,7 @@ npm create qingkuai -- "your project name" -ts
 # With pnpm
 pnpm create qingkuai@latest "your project name" -ts
 
-# With yarn(v1+)
-yarn create qingkuai "your project name" -ts
-
-# With yarn(v2+)
-yarn create qingkuai@latest "your project name" -ts
-
-# With yarn ^v4.11
+# With yarn
 yarn dlx create-qingkuai@latest "your project name" -ts
 ```
 
@@ -53,6 +41,6 @@ npm install && npm run dev
 # With pnpm
 pnpm install && pnpm run dev
 
-# With yarn(v1+)
+# With yarn
 yarn && yarn dev
 ```

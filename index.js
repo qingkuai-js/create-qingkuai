@@ -22,3 +22,4 @@ if (fs.existsSync(targetPath)) {
 const useTS = args.includes("-ts")
 fs.copySync(path.resolve(dir, `./templates/${useTS ? "ts" : "js"}`), targetPath)
 fs.renameSync(path.resolve(targetPath, "_gitignore"), path.resolve(targetPath, ".gitignore"))
+fs.renameSync(path.resolve(targetPath, "_qingkuairc"), path.resolve(targetPath, ".qingkuairc"))

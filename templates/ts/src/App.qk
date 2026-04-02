@@ -5,8 +5,8 @@
 
 <div>
     <a
-        href="https://vite.dev"
         target="_blank"
+        href="https://vite.dev"
     >
         <img
             class="logo"
@@ -15,8 +15,8 @@
         />
     </a>
     <a
-        href="https://qingkuai.dev"
         target="_blank"
+        href="https://qingkuai.dev"
     >
         <img
             class="logo qingkuai"
