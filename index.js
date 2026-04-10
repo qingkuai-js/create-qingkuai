@@ -22,5 +22,10 @@ if (fsExtra.existsSync(targetPath)) {
 const useTS = args.includes("-ts")
 fsExtra.copySync(nodePath.resolve(dir, `./templates/${useTS ? "ts" : "js"}`), targetPath)
 
+const targetPkgPath = nodePath.resolve(targetPath, "package.json")
+const targetPkg = fsExtra.readJsonSync(targetPkgPath)
+targetPkg.name = projectName
+fsExtra.writeJsonSync(targetPkgPath, targetPkg, { spaces: 4 })
+
 fsExtra.renameSync(nodePath.resolve(targetPath, "_gitignore"), nodePath.resolve(targetPath, ".gitignore"))
 fsExtra.renameSync(nodePath.resolve(targetPath, "_qingkuairc"), nodePath.resolve(targetPath, ".qingkuairc"))
