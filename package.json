@@ -3,7 +3,7 @@
     "author": "mlgq",
     "license": "MIT",
     "type": "module",
-    "version": "1.0.22",
+    "version": "1.0.23",
     "bin": {
         "create-qingkuai": "index.js"
     },

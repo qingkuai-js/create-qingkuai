@@ -1,25 +1,26 @@
 #!/usr/bin/env node
 
-import fs from "fs-extra"
-import path from "node:path"
-import { fileURLToPath } from "node:url"
+import fsExtra from "fs-extra"
+import nodeUrl from "node:url"
+import nodePath from "node:path"
 
 const args = process.argv.slice(2)
 const targetDir = process.env.INIT_CWD || process.cwd()
-const dir = path.dirname(fileURLToPath(import.meta.url))
+const dir = nodePath.dirname(nodeUrl.fileURLToPath(import.meta.url))
 
 let projectName = args[0]
 if (!projectName || /^-(?:ts)$/.test(projectName)) {
     projectName = "qingkuai-app"
 }
 
-const targetPath = path.resolve(targetDir, projectName)
-if (fs.existsSync(targetPath)) {
+const targetPath = nodePath.resolve(targetDir, projectName)
+if (fsExtra.existsSync(targetPath)) {
     console.error(`Error: directory "${projectName}" already exists in current location.`)
     process.exit(1)
 }
 
 const useTS = args.includes("-ts")
-fs.copySync(path.resolve(dir, `./templates/${useTS ? "ts" : "js"}`), targetPath)
-fs.renameSync(path.resolve(targetPath, "_gitignore"), path.resolve(targetPath, ".gitignore"))
-fs.renameSync(path.resolve(targetPath, "_qingkuairc"), path.resolve(targetPath, ".qingkuairc"))
+fsExtra.copySync(nodePath.resolve(dir, `./templates/${useTS ? "ts" : "js"}`), targetPath)
+
+fsExtra.renameSync(nodePath.resolve(targetPath, "_gitignore"), nodePath.resolve(targetPath, ".gitignore"))
+fsExtra.renameSync(nodePath.resolve(targetPath, "_qingkuairc"), nodePath.resolve(targetPath, ".qingkuairc"))
