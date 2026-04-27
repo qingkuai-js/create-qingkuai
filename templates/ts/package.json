@@ -1,18 +1,12 @@
 {
-    "name": "vite-qingkuai-starter",
     "private": true,
-    "version": "1.0.0",
     "type": "module",
+    "version": "1.0.0",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
         "preview": "vite preview"
     },
-    "dependencies": {
-        "qingkuai": "latest"
-    },
-    "devDependencies": {
-        "vite-plugin-qingkuai": "latest",
-        "vite": "^6.3.5"
-    }
+    "dependencies": {},
+    "devDependencies": {}
 }

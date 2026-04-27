@@ -29,37 +29,80 @@ Examples:
     process.exit(0)
 }
 
-let projectName = args[0]
-let isCurrentDir = false
+// 主函数：异步执行初始化逻辑
+async function main() {
+    try {
+        let targetPath
+        let isCurrentDir = false
+        let projectName = args[0]
+        const useTS = args.includes("-ts")
 
-// 处理 . 表示在当前目录生成
-if (projectName === ".") {
-    isCurrentDir = true
-    projectName = nodePath.basename(targetDir)
-} else if (!projectName || /^-(?:ts)$/.test(projectName)) {
-    projectName = "qingkuai-app"
+        // 处理 . 表示在当前目录生成
+        if (projectName === ".") {
+            isCurrentDir = true
+            targetPath = targetDir
+            projectName = nodePath.basename(targetDir)
+        } else {
+            if (!projectName || /^-(?:ts)$/.test(projectName)) {
+                projectName = "qingkuai-app"
+            }
+            targetPath = nodePath.resolve(targetDir, projectName)
+        }
+
+        if (!isCurrentDir && fsExtra.existsSync(targetPath)) {
+            console.error(`Error: directory "${projectName}" already exists in current location.`)
+            process.exit(1)
+        }
+
+        fsExtra.copySync(nodePath.resolve(dir, `./templates/${useTS ? "ts" : "js"}`), targetPath, {
+            overwrite: isCurrentDir ? true : false
+        })
+
+        const targetPkgPath = nodePath.resolve(targetPath, "package.json")
+        const targetPkg = fsExtra.readJsonSync(targetPkgPath)
+        const finalPkg = { name: projectName, ...targetPkg }
+
+        // 获取最新版本并更新
+        try {
+            const qingkuaiVersion = await getLatestVersion("qingkuai")
+            const vitePluginQingkuaiVersion = await getLatestVersion("vite-plugin-qingkuai")
+            finalPkg.devDependencies["vite"] = "^8"
+            finalPkg.dependencies["qingkuai"] = qingkuaiVersion
+            finalPkg.devDependencies["vite-plugin-qingkuai"] = vitePluginQingkuaiVersion
+        } catch (error) {
+            console.warn(`⚠️  Warning: Could not fetch npm versions`)
+            finalPkg.devDependencies["vite"] = "^8"
+        }
+
+        fsExtra.writeJsonSync(targetPkgPath, finalPkg, { spaces: 4 })
+
+        fsExtra.renameSync(nodePath.resolve(targetPath, "_gitignore"), nodePath.resolve(targetPath, ".gitignore"))
+        fsExtra.renameSync(nodePath.resolve(targetPath, "_qingkuairc"), nodePath.resolve(targetPath, ".qingkuairc"))
+
+        console.log(`✨ Project initialized successfully!`)
+        if (!isCurrentDir) {
+            console.log(`📂 cd ${projectName}`)
+        }
+    } catch (error) {
+        console.error("Error:", error.message)
+        process.exit(1)
+    }
 }
 
-const targetPath = isCurrentDir ? targetDir : nodePath.resolve(targetDir, projectName)
-if (!isCurrentDir && fsExtra.existsSync(targetPath)) {
-    console.error(`Error: directory "${projectName}" already exists in current location.`)
-    process.exit(1)
+// 从淘宝镜像获取包的最新版本
+async function getLatestVersion(packageName) {
+    try {
+        const response = await fetch(`https://registry.npmmirror.com/${packageName}`)
+        if (!response.ok) {
+            throw new Error(`Failed to fetch ${packageName}`)
+        }
+
+        const data = await response.json()
+        return data["dist-tags"].latest
+    } catch (error) {
+        console.warn(`⚠️  Warning: Could not fetch latest version for ${packageName}, using fallback`)
+        return "latest"
+    }
 }
 
-const useTS = args.includes("-ts")
-fsExtra.copySync(nodePath.resolve(dir, `./templates/${useTS ? "ts" : "js"}`), targetPath, {
-    overwrite: isCurrentDir ? true : false
-})
-
-const targetPkgPath = nodePath.resolve(targetPath, "package.json")
-const targetPkg = fsExtra.readJsonSync(targetPkgPath)
-targetPkg.name = projectName
-fsExtra.writeJsonSync(targetPkgPath, targetPkg, { spaces: 4 })
-
-fsExtra.renameSync(nodePath.resolve(targetPath, "_gitignore"), nodePath.resolve(targetPath, ".gitignore"))
-fsExtra.renameSync(nodePath.resolve(targetPath, "_qingkuairc"), nodePath.resolve(targetPath, ".qingkuairc"))
-
-console.log(`✨ Project initialized successfully!`)
-if (!isCurrentDir) {
-    console.log(`📂 cd ${projectName}`)
-}
+main()
