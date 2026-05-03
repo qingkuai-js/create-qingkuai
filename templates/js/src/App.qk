@@ -1,10 +1,10 @@
 <lang-js>
-    import HelloWorld from "./components/HelloWorld"
+    import Hello from "./components/Hello"
 </lang-js>
 
 <div class="app-container">
     <main class="main-content">
-        <HelloWorld !title={"Get started with qingkuai"} />
+        <Hello !title={"Get started with qingkuai"} />
     </main>
 </div>
 
