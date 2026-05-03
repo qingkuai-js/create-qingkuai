@@ -58,6 +58,12 @@ async function main() {
             overwrite: isCurrentDir ? true : false
         })
 
+        // 更新 index.html 中的 title
+        const indexHtmlPath = nodePath.resolve(targetPath, "index.html")
+        let indexHtmlContent = fsExtra.readFileSync(indexHtmlPath, "utf-8")
+        indexHtmlContent = indexHtmlContent.replace(/<title>.*?<\/title>/, `<title>${projectName}</title>`)
+        fsExtra.writeFileSync(indexHtmlPath, indexHtmlContent, "utf-8")
+
         const targetPkgPath = nodePath.resolve(targetPath, "package.json")
         const targetPkg = fsExtra.readJsonSync(targetPkgPath)
         const finalPkg = { name: projectName, ...targetPkg }
@@ -78,6 +84,32 @@ async function main() {
 
         fsExtra.renameSync(nodePath.resolve(targetPath, "_gitignore"), nodePath.resolve(targetPath, ".gitignore"))
         fsExtra.renameSync(nodePath.resolve(targetPath, "_qingkuairc"), nodePath.resolve(targetPath, ".qingkuairc"))
+
+        // 清理无用文件和目录
+        // 删除 .vscode 目录
+        const vscodeDir = nodePath.resolve(targetPath, ".vscode")
+        if (fsExtra.existsSync(vscodeDir)) {
+            fsExtra.removeSync(vscodeDir)
+        }
+
+        // 删除 vite.svg
+        const viteSvg = nodePath.resolve(targetPath, "public", "vite.svg")
+        if (fsExtra.existsSync(viteSvg)) {
+            fsExtra.removeSync(viteSvg)
+        }
+
+        // 保留 src/assets：模板中的样式与图标资源都在该目录下
+
+        // 删除 .DS_Store 文件
+        const dsStoreFiles = [
+            nodePath.resolve(targetPath, ".DS_Store"),
+            nodePath.resolve(targetPath, "src", ".DS_Store")
+        ]
+        dsStoreFiles.forEach(file => {
+            if (fsExtra.existsSync(file)) {
+                fsExtra.removeSync(file)
+            }
+        })
 
         console.log(`✨ Project initialized successfully!`)
         if (!isCurrentDir) {
