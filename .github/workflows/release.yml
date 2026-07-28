@@ -69,17 +69,17 @@ jobs:
           git fetch origin --tags --prune
           git checkout "refs/tags/$TAG"
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 9
+
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
           node-version: 24
           cache: pnpm
           registry-url: https://registry.npmjs.org
-
-      - name: Setup pnpm
-        run: |
-          corepack enable
-          corepack prepare pnpm@9.0.0 --activate
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --ignore-scripts
