@@ -2,15 +2,15 @@
     "compilerOptions": {
         "strict": true,
         "noEmit": true,
-        "target": "ES2022",
+        "target": "es2015",
         "module": "ESNext",
         "skipLibCheck": true,
         "esModuleInterop": true,
-        "lib": ["ES2023", "DOM"],
+        "lib": ["ESNext", "DOM"],
         "types": ["vite/client"],
-        "skipDefaultLibCheck": true,
         "moduleResolution": "bundler",
         "allowImportingTsExtensions": true,
         "forceConsistentCasingInFileNames": true
-    }
+    },
+    "exclude": ["node_modules", "dist"]
 }
