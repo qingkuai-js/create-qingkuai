@@ -1,5 +1,8 @@
+.github
 .DS_Store
 .gitignore
+
+scripts
 node_modules
 qingkuai-app
 jsconfig.json
