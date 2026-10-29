@@ -1,46 +1,18 @@
 # create-qingkuai
 
-The official scaffolding tool for quickly bootstrapping a Qingkuai project
+`npm create qingkuai` is now a thin forwarder: it invokes `qingkuai init` from
+[`@qingkuai/cli`](https://www.npmjs.com/package/@qingkuai/cli), where the project
+templates live as the single source.
 
-[Documentation](https://qingkuai.dev) | [VSCode Extension](https://marketplace.visualstudio.com/items?itemName=qingkuai-tools.qingkuai-language-features) | [Issues](https://github.com/qingkuai-js/create-qingkuai/issues)
-
-## Installation
-
-No need to install globally. Use `npm`, `yarn`, or `pnpm`:
-
-```bash
-# With npm
-npm create qingkuai -- "your project name"
-
-# With pnpm
-pnpm create qingkuai@latest "your project name"
-
-# With yarn
-yarn dlx create-qingkuai@latest "your project name"
+```sh
+# equivalent to: qingkuai init [name] [--lang js|ts] [--force]
+npm create qingkuai
 ```
 
-If you want to use it in combination with typescript:
+Install the CLI directly for the full toolchain (dev / build / preview /
+build-types / check / format):
 
-```bash
-# With npm
-npm create qingkuai -- "your project name" -ts
-
-# With pnpm
-pnpm create qingkuai@latest "your project name" -ts
-
-# With yarn
-yarn dlx create-qingkuai@latest "your project name" -ts
-```
-
-## Start developing
-
-```bash
-# With npm
-npm install && npm run dev
-
-# With pnpm
-pnpm install && pnpm run dev
-
-# With yarn
-yarn && yarn dev
+```sh
+npm i -g @qingkuai/cli
+qingkuai init qingkuai-app
 ```

@@ -1,28 +1,21 @@
 {
-  "name": "create-qingkuai",
-  "author": "mlgq",
-  "license": "MIT",
-  "type": "module",
-  "version": "1.0.34",
-  "bin": {
-    "create-qingkuai": "index.js"
-  },
-  "scripts": {
-    "release": "node ./scripts/release.js",
-    "postpublish": "curl -X PUT 'https://registry-direct.npmmirror.com/-/package/create-qingkuai/syncs'"
-  },
-  "engines": {
-    "node": "^18.0.0 || ^20.0.0 || >=22.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/qingkuai-js/create-qingkuai.git"
-  },
-  "devDependencies": {
-    "@types/fs-extra": "^11.0.4",
-    "@types/node": "^22.15.14"
-  },
-  "dependencies": {
-    "fs-extra": "^11.3.0"
-  }
+    "name": "create-qingkuai",
+    "author": "mlgq",
+    "license": "MIT",
+    "type": "module",
+    "version": "2.0.0",
+    "bin": {
+        "create-qingkuai": "index.js"
+    },
+    "scripts": {
+        "release": "node ./scripts/release.js",
+        "postpublish": "curl -X PUT 'https://registry-direct.npmmirror.com/-/package/create-qingkuai/syncs'"
+    },
+    "engines": {
+        "node": "^18.0.0 || ^20.0.0 || >=22.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/qingkuai-js/create-qingkuai.git"
+    }
 }
